@@ -208,8 +208,8 @@ window.addEventListener("load", reveal);
 window.addEventListener("scroll", reveal);
 
 // Supabase Setup
-const supabaseUrl = "YOUR_SUPABASE_URL";
-const supabaseKey = "YOUR_SUPABASE_ANON_KEY";
+const supabaseUrl = "https://dscafzjstmuyhxvtuknh.supabase.co";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRzY2FmempzdG11eWh4dnR1a25oIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIwNDMxMjgsImV4cCI6MjA4NzYxOTEyOH0.xJz1bztmhcDXEu9-rAJy6XMspnxQYJ-HQs8qcDvQUGg";
 
 if (window.supabase) {
     const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
@@ -241,4 +241,5 @@ if (window.supabase) {
 </script>
 
 </body>
+
 </html>
