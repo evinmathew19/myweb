@@ -1,59 +1,244 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Evin Mathew | Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evin Mathew | Portfolio</title>
+
+<!-- Supabase CDN -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+:root {
+    --gold: #d4af37;
+    --black: #0a0a0a;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--black);
+    color: white;
+}
+
+/* Sections */
+section {
+    padding: 100px 10%;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: 0.8s ease;
+}
+
+section.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Hero */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: linear-gradient(135deg, #000000, #1c1c1c);
+}
+
+.hero h1 {
+    font-size: 3rem;
+    color: var(--gold);
+}
+
+.hero p {
+    margin: 20px 0;
+    font-size: 1.2rem;
+}
+
+button {
+    padding: 12px 30px;
+    border: 2px solid var(--gold);
+    background: transparent;
+    color: var(--gold);
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 30px;
+    transition: 0.4s;
+}
+
+button:hover {
+    background: var(--gold);
+    color: black;
+    box-shadow: 0 0 15px var(--gold);
+}
+
+/* Cards */
+.card {
+    background: rgba(212,175,55,0.08);
+    border: 1px solid var(--gold);
+    padding: 25px;
+    margin: 20px auto;
+    border-radius: 15px;
+    max-width: 400px;
+    transition: 0.4s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 0 20px var(--gold);
+}
+
+/* Skills Layout */
+.skills-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Feedback */
+.feedback form {
+    max-width: 500px;
+    margin: auto;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 15px 0;
+    background: #1a1a1a;
+    border: 1px solid var(--gold);
+    color: white;
+    border-radius: 8px;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    box-shadow: 0 0 10px var(--gold);
+}
+
+.success { color: #22c55e; }
+.error { color: #ef4444; }
+
+#contact p {
+    margin: 10px 0;
+    color: var(--gold);
+}
+</style>
 </head>
+
 <body>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1>Hi, I'm Evin Mathew</h1>
-        <p>Computer Science Student | Web Developer</p>
-        <button onclick="scrollToContact()">Contact Me</button>
-    </section>
+<section class="hero show">
+    <h1>Hi, I'm Evin Mathew</h1>
+    <p>Computer Science Student | Web Developer | Cloud Enthusiast</p>
+    <button onclick="document.getElementById('contact').scrollIntoView()">Contact Me</button>
+</section>
 
-    <!-- About -->
-    <section class="about">
-        <h2>About Me</h2>
-        <p>
-            I am a Computer Science student passionate about Web Development,
-            Cloud Computing, and problem-solving.
-        </p>
-    </section>
+<section>
+    <h2 style="color:var(--gold); margin-bottom:30px;">About Me</h2>
+    <p style="max-width:750px;margin:auto;line-height:1.8;">
+        I am a passionate Computer Science student dedicated to building modern, scalable, 
+        and user-focused web applications. I enjoy solving real-world problems through clean 
+        and efficient code. My interests include full-stack development, cloud computing, 
+        and DevOps practices. I continuously explore emerging technologies to strengthen my 
+        technical foundation and stay ahead in the evolving tech landscape. My goal is to 
+        contribute to innovative projects while growing into a skilled software engineer 
+        capable of delivering high-quality digital solutions.
+    </p>
+</section>
 
-    <!-- Skills -->
-    <section class="skills">
-        <h2>Skills</h2>
-        <ul>
-            <li>HTML & CSS</li>
-            <li>JavaScript</li>
-            <li>Python</li>
-            <li>AWS Basics</li>
-        </ul>
-    </section>
+<section>
+    <h2 style="color:var(--gold); margin-bottom:30px;">Skills</h2>
+    <div class="skills-container">
+        <div class="card">HTML & CSS</div>
+        <div class="card">JavaScript</div>
+        <div class="card">Python</div>
+        <div class="card">AWS Basics</div>
+    </div>
+</section>
 
-    <!-- Projects -->
-    <section class="projects">
-        <h2>Projects</h2>
-        <div class="project-card">
-            <h3>Portfolio Website</h3>
-            <p>A personal website built using HTML, CSS, and JavaScript.</p>
-        </div>
+<section>
+    <h2 style="color:var(--gold); margin-bottom:30px;">Projects</h2>
+    <div class="card">
+        <h3>Portfolio Website</h3>
+        <p>Responsive and animated personal portfolio website.</p>
+    </div>
+    <div class="card">
+        <h3>Cloud Notes App</h3>
+        <p>Secure notes app hosted on AWS with authentication.</p>
+    </div>
+</section>
 
-        <div class="project-card">
-            <h3>Cloud Notes App</h3>
-            <p>A notes app hosted on AWS with authentication.</p>
-        </div>
-    </section>
+<section class="feedback">
+    <h2 style="color:var(--gold); margin-bottom:30px;">Feedback</h2>
+    <form id="feedbackForm">
+        <input type="text" id="name" placeholder="Your Name" required>
+        <input type="email" id="email" placeholder="Your Email" required>
+        <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit">Submit</button>
+        <p id="responseMessage"></p>
+    </form>
+</section>
 
-    <!-- Contact -->
-    <section class="contact" id="contact">
-        <h2>Contact</h2>
-        <p>Email: evinmathew5950@gmail.com</p>
-        <p>LinkedIn: linkedin.com/in/evin</p>
-    </section>
+<section id="contact">
+    <h2 style="color:var(--gold); margin-bottom:20px;">Contact</h2>
+    <p>Email: evinmathew5950@gmail.com</p>
+    <p>LinkedIn: linkedin.com/in/evin</p>
+</section>
 
-    <script src="script.js"></script>
+<script>
+// Reveal animation on load + scroll
+const sections = document.querySelectorAll("section");
+
+function reveal() {
+    sections.forEach(sec => {
+        const top = sec.getBoundingClientRect().top;
+        if (top < window.innerHeight - 100) {
+            sec.classList.add("show");
+        }
+    });
+}
+
+window.addEventListener("load", reveal);
+window.addEventListener("scroll", reveal);
+
+// Supabase Setup
+const supabaseUrl = "YOUR_SUPABASE_URL";
+const supabaseKey = "YOUR_SUPABASE_ANON_KEY";
+
+if (window.supabase) {
+    const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+    document.getElementById("feedbackForm")
+    .addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const message = document.getElementById("message").value;
+
+        const { error } = await supabase
+            .from("feedback")
+            .insert([{ name, email, message }]);
+
+        const responseMessage = document.getElementById("responseMessage");
+
+        if (error) {
+            responseMessage.className = "error";
+            responseMessage.textContent = "Error sending feedback!";
+        } else {
+            responseMessage.className = "success";
+            responseMessage.textContent = "Feedback sent successfully!";
+            document.getElementById("feedbackForm").reset();
+        }
+    });
+}
+</script>
+
 </body>
 </html>
